@@ -1,0 +1,5 @@
+/* components/coolui-scroller/coolui-scroller.wxss */
+:host {
+  display: block;
+  width: 100%;
+}

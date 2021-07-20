@@ -1,0 +1,4 @@
+<!--components/coolui-scroller-item/coolui-scroller-item.wxml-->
+<view class="wx-coolui-scroller-handtip">
+  <slot></slot>
+</view>

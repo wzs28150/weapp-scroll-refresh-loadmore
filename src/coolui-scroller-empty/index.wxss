@@ -1,0 +1,7 @@
+/* components/coolui-scroller-item/coolui-scroller-item.wxss */
+:host {
+  display: inline-block;
+}
+.wx-coolui-scroller-empty {
+  height: 100%;
+}
