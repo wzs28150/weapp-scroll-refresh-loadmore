@@ -68,6 +68,11 @@ Page({
               height: 1
             },
           })
+          // 由于接口模拟数据不能自增全部id,处理id
+          const list = res.data.data.list
+          for (let i = 0; i < list.length; i++) {
+            list[i].id = 3 * (than.pageNum - 1) + i
+          }
           than.ctx.append(res.data.data.list, function () {
             wx.createSelectorQuery()
               .select('.scroller-item')
@@ -80,7 +85,7 @@ Page({
               })
               .exec()
           })
-          console.log(than.ctx.getBoundingClientRect(1))
+          // console.log(than.ctx.getBoundingClientRect(1))
           than.postflg = true
           setTimeout(() => {
             than.setData({

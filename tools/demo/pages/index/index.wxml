@@ -3,7 +3,7 @@
     <coolui-scroller-item class="scroller-item" style="width:100%;" wx:for="{{recycleList}}" wx:key="title">
       <view class="item">
         <image class='item-image' src="{{item.img}}"></image>
-        <view class="item-title">{{item.title}}</view>
+        <view class="item-title">{{item.id}}.{{item.title}}</view>
       </view>
     </coolui-scroller-item>
     <view slot="after" style="height:200px;">after height:200px view</view>
