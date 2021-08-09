@@ -1,19 +1,11 @@
 <!-- <button bindtap="showRecycleview1">showRecycleview</button> -->
 <!-- <button bindtap="hideRecycleview">hideRecycleview</button> -->
-<coolui-scroller class="recycle-list" placeholder-image="{{placeholderImage}}" bindscrolltolower="scrollToLower" scroll-with-animation="{{true}}" batch="{{batchSetRecycleData}}" batch-key="batchSetRecycleData" scroll-to-index="{{index}}" scroll-top="{{scrollTop}}"  id="recycleId">
-  <!-- <view slot="before" style=''>
-    <button bindtap="scrollTo2000">scrollTo2000</button>
-    <button bindtap="scrollTo0">scrollTo0</button>
-    <button bindtap="scrollToid" style="height:123.5rpx">scrollToIdx</button>
-  </view> -->
-  <template is="cooluiScrollerItem" data="{{item: item, recycleList: recycleList}}"></template>
-  <view slot="after" style="height:200px;">after height:200px view</view>
-</coolui-scroller>
-<template name="cooluiScrollerItem">
+<coolui-scroller class="recycle-list" placeholder-image="{{placeholderImage}}" bindscrolltolower="scrollToLower" scroll-with-animation="{{true}}" batch="{{batchSetRecycleData}}" batch-key="batchSetRecycleData" scroll-to-index="{{index}}" scroll-top="{{scrollTop}}" id="recycleId">
   <coolui-scroller-item style="width:100%;height:160px;" wx:for="{{recycleList}}" wx:key="id">
     <view class="recycle-itemsize" style="width:100%;height:{{item.test.azFirst ? 160 : 160}}px;position: relative;">
-        <image class='recycle-image' style='width:80px;height:80px;' src="{{item.image_url}}?imageView2/2/w/120/h/0/q/120/format/jpg"></image>
+      <image class='recycle-image' style='width:80px;height:80px;' src="{{item.image_url}}?imageView2/2/w/120/h/0/q/120/format/jpg"></image>
       <text class="recycle-text">{{item.idx+1}}. {{item.title}}</text>
     </view>
   </coolui-scroller-item>
-</template>
+  <view slot="after" style="height:200px;">after height:200px view</view>
+</coolui-scroller>
