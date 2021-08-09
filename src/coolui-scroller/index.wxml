@@ -3,7 +3,7 @@
   <view style="height:{{hasHeaderSlotHeight ? headerSlotHeight + 'px' : 'auto'}}" class="slot-header">
     <slot name="header"></slot>
   </view>
-  <scroll-view bindscroll="_scrollViewDidScroll" class="content" style='height:100%;position: relative;' scroll-y="{{useInPage ? false : scrollY}}" scroll-x="{{false}}" upper-threshold="{{upperThreshold}}" lower-threshold="{{lowerThreshold}}" scroll-top="{{innerScrollTop}}" scroll-into-view="{{innerScrollIntoView}}" scroll-with-animation="{{scrollWithAnimation}}" bindscrolltoupper="_scrollToUpper" bindscrolltolower="_scrollToLower" scroll-anchoring enable-back-to-top="{{enableBackToTop}}" throttle="{{throttle}}" refresher-enabled="{{true}}" enhanced="{{true}}" refresher-threshold="70" fast-deceleration="{{true}}" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}">
+  <scroll-view bindscroll="_scrollViewDidScroll" class="content" style='height:100%;position: relative;' scroll-y="{{useInPage ? false : scrollY}}" scroll-x="{{false}}" upper-threshold="{{upperThreshold}}" lower-threshold="{{lowerThreshold}}" scroll-top="{{innerScrollTop}}" scroll-into-view="{{innerScrollIntoView}}" scroll-with-animation="{{scrollWithAnimation}}"        bindrefresherrefresh="_scrollToUpper" bindscrolltolower="_scrollToLower" scroll-anchoring enable-back-to-top="{{enableBackToTop}}" throttle="{{throttle}}" refresher-enabled="{{true}}" enhanced="{{true}}" refresher-threshold="70" fast-deceleration="{{true}}"  refresher-triggered="{{triggered}}" >
     <view style="position: absolute;z-index:1;width:100%;left: 0;top: 0;opacity: 0;visibility: hidden;">
       <slot name="itemsize"></slot>
     </view>

@@ -129,6 +129,10 @@ Component({
       type: Number,
       public: true,
       value: DEFAULT_SHOW_SCREENS
+    },
+    triggered: {
+      type: Boolean,
+      value: true
     }
   },
 
@@ -142,8 +146,7 @@ Component({
     innerScrollIntoView: '',
     placeholderImageStr: '',
     totalHeight: 0,
-    useInPage: false,
-    triggered: false
+    useInPage: false
   },
   attached() {
     if (this.data.placeholderImage) {
