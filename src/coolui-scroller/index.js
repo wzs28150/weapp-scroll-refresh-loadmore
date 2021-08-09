@@ -532,7 +532,7 @@ Component({
             if (newCb) { newCb() }
           }
         }).exec()
-        this.createSelectorQuery().select('.slot-after').boundingClientRect((rect) => {
+        this.createSelectorQuery().select('.slot-loadmore').boundingClientRect((rect) => {
           afterSlotHeight = rect.height
           afterReady = true
           if (beforeReady) {

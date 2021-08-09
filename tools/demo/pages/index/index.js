@@ -1,165 +1,67 @@
 // 获取应用实例
+
+// import createRecycleContext from '../../components/index'
 const app = getApp()
-let data = require('./data.js')
-
-let j = 1
-data = data.response.data
-const systemInfo = wx.getSystemInfoSync()
-
-// 提交wx.createRecycleContext能力
 const createRecycleContext = require('../../components/index.js').default
 
-Page({
+// 提交wx.createRecycleContext能力
 
+// console.log(createRecycleContext)
+Page({
+  pageNum: 1,
+  listobj: Object,
+  windowWidth: 0,
   data: {
     // placeholderImage: "data:image/svg+xml,%3Csvg height='140rpx' test='132rpx' width='100%25' xmlns='http://www.w3.org/2000/svg'%3E %3Crect width='50%25' x='40' height='20%25' style='fill:rgb(204,204,204);' /%3E %3C/svg%3E"
   },
   onLoad() {
-    const ctx = createRecycleContext({
-      id: 'recycleId',
-      dataKey: 'recycleList',
-      page: this,
-      itemSize(item, index) {
-        return {
-          width: systemInfo.windowWidth / 2,
-          height: 160
-        }
-      },
-      placeholderClass: ['recycle-image', 'recycle-text'],
-      // itemSize: function(item) {
-      //   return {
-      //     width: 195,
-      //     height: item.azFirst ? 130 : 120
-      //   }
-      // },
-      // useInPage: true
-    })
-    this.ctx = ctx
-  },
-  onUnload() {
-    this.ctx.destroy()
-    this.ctx = null
-  },
-  onReady() {
-    let newData = []
-    data.forEach((item, i) => {
-      if (item.goods) {
-        newData = newData.concat(item.goods)
+    const than = this
+    wx.getSystemInfo({
+      success(res) {
+        than.windowWidth = res.windowWidth
+        than.listobj = createRecycleContext({
+          id: 'recycleId',
+          dataKey: 'recycleList',
+          page: than,
+          itemSize: than.itemSizeFunc,
+        })
+
+        than.getlist()
       }
     })
-    this.showView()
-  },
-  genData() {
-    let newData = []
-    data.forEach((item, i) => {
-      if (item.goods) {
-        newData = newData.concat(item.goods)
-      }
-      // 构造270份数据
-      var item = item.goods[0]
-      for (var i = 0; i < 50; i++) {
-        const newItem = Object.assign({}, item)
-        newData.push(newItem)
-      }
-    })
-    const newList = []
-    let k = 0
-    newData.forEach((item, i) => {
-      item.idx = i
-      if (k % 10 == 0) {
-        item.azFirst = true
-      } else {
-        item.azFirst = false
-      }
-      k++
-      newList.push(item)
-      item.id += (j++)
-      item.image_url = item.image_url.replace('https', 'http')
-      const newItem = Object.assign({}, item)
-      if (k % 10 == 0) {
-        newItem.azFirst = true
-        // console.log('first item', newList.length)
-      }
-      k++
-      newItem.id += '_1'
-      newItem.image_url = newItem.image_url.replace('https', 'http')
-      newList.push(newItem)
-    })
-    return newList
-  },
-  showView() {
-    const ctx = this.ctx
-    const newList = this.genData()
-    // console.log('recycle data is', newList)
-    // API的调用方式
-    console.log('len', newList.length)
-    const st = Date.now()
-    // ctx.splice(0, 0, newList, function() {
-    //   // 新增加的数据渲染完毕之后, 触发的回调
-    //   console.log('【render】use time', Date.now() - st)
-    // })
-    ctx.splice(newList, () => {
-      // 新增加的数据渲染完毕之后, 触发的回调
-      console.log('【render】deleteList use time', Date.now() - st)
-      // this.setData({
-      //   scrollTop: 1000
-      // })
-    })
-    console.log('transformRpx', ctx.transformRpx(123.5))
   },
   itemSizeFunc(item, idx) {
+    const than = this
     return {
-      width: 162,
-      height: 182
+      width: than.windowWidth * 0.47,
+      height: than.windowWidth * 0.61
     }
   },
-  onPageScroll() {}, // 一定要留一个空的onPageScroll函数
   scrollToLower(e) {
-    // 延迟1s，模拟网络请求
-    if (this.isScrollToLower) return
-    // console.log('【【【【trigger scrollToLower')
-    this.isScrollToLower = true
-    setTimeout(() => {
-      // console.log('【【【【exec scrollToLower')
-      const newList = this.genData()
-      this.ctx.append(newList, () => {
-        this.isScrollToLower = false
-      })
-    }, 1000)
+    console.log('滚动到底部----')
+    if (this.postflg) {
+      this.postflg = false // 请求完成前不再更改页码请求接口
+      this.pageNum++
+      this.getlist()
+    }
   },
-  scrollTo2000(e) {
-    this.setData({
-      scrollTop: 5000
-    })
-  },
-  scrollTo0() {
-    this.setData({
-      scrollTop: 0
-    })
-  },
-  newEmptyPage() {
-    wx.navigateTo({
-      url: './empty/empty'
-    })
-  },
-  scrollToid() {
-    this.setData({
-      index: 100
-    })
-  },
-  getScrollTop() {
-    console.log('getScrollTop', this.ctx.getScrollTop())
-  },
-  showRecycleview1() {
-    this.setData({
-      showRecycleview: true
-    }, () => {
-      this.showView()
-    })
-  },
-  hideRecycleview() {
-    this.setData({
-      showRecycleview: false
+  getlist() {
+    const than = this
+    wx.request({
+      url: 'http://82.157.27.90:9099/mock/28/index/list',
+      data: {
+        page: than.pageNum,
+        pagenum: 10,
+      },
+      method: 'get',
+      success(res) {
+        console.log(res.data.code)
+        if (res.data.code === 200) {
+          // append  RecycleContext 对象提供的方法:在当前的长列表数据上追加list数据
+          than.listobj.append(res.data.data.list)
+          than.postflg = true
+        }
+      }
     })
   }
 })

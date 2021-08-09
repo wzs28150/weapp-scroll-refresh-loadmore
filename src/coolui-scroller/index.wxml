@@ -1,27 +1,9 @@
 <!-- components/coolui-scroller/coolui-scroller.wxml -->
 <view bindtouchstart='_beginToScroll' style="height:{{useInPage ? totalHeight + (hasBeforeSlotHeight ? beforeSlotHeight : 0) + (hasAfterSlotHeight ? afterSlotHeight : 0) : height}}px;width:{{width}}px;transform:translateZ(0);-webkit-transform:translateZ(0);" id="content" class="wrap">
-  <scroll-view
-  bindscroll="_scrollViewDidScroll"
-  class="content"
-  style='height:100%;position: relative;'
-  scroll-y="{{useInPage ? false : scrollY}}"
-  scroll-x="{{false}}"
-  upper-threshold="{{upperThreshold}}"
-  lower-threshold="{{lowerThreshold}}"
-  scroll-top="{{innerScrollTop}}"
-  scroll-into-view="{{innerScrollIntoView}}"
-  scroll-with-animation="{{scrollWithAnimation}}"
-  bindscrolltoupper="_scrollToUpper"
-  bindscrolltolower="_scrollToLower"
-  scroll-anchoring
-  enable-back-to-top="{{enableBackToTop}}"
-  throttle="{{throttle}}"
-  refresher-enabled="{{true}}"
-  enhanced="{{true}}"
-  refresher-threshold="70"
-  fast-deceleration="{{true}}"
-  bindrefresherrefresh="onRefresh"
-  refresher-triggered="{{triggered}}">
+  <view style="height:{{hasHeaderSlotHeight ? headerSlotHeight + 'px' : 'auto'}}" class="slot-header">
+    <slot name="header"></slot>
+  </view>
+  <scroll-view bindscroll="_scrollViewDidScroll" class="content" style='height:100%;position: relative;' scroll-y="{{useInPage ? false : scrollY}}" scroll-x="{{false}}" upper-threshold="{{upperThreshold}}" lower-threshold="{{lowerThreshold}}" scroll-top="{{innerScrollTop}}" scroll-into-view="{{innerScrollIntoView}}" scroll-with-animation="{{scrollWithAnimation}}" bindscrolltoupper="_scrollToUpper" bindscrolltolower="_scrollToLower" scroll-anchoring enable-back-to-top="{{enableBackToTop}}" throttle="{{throttle}}" refresher-enabled="{{true}}" enhanced="{{true}}" refresher-threshold="70" fast-deceleration="{{true}}" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}">
     <view style="position: absolute;z-index:1;width:100%;left: 0;top: 0;opacity: 0;visibility: hidden;">
       <slot name="itemsize"></slot>
     </view>
@@ -35,8 +17,11 @@
       </view>
       <!-- <view class='after' style="height:{{innerAfterHeight}}px"></view> -->
     </view>
-    <view style="height:{{hasAfterSlotHeight ? afterSlotHeight + 'px' : 'auto'}}" class="slot-after">
-      <slot name="after"></slot>
+    <view style="height:{{hasAfterSlotHeight ? afterSlotHeight + 'px' : 'auto'}}" class="slot-loadmore">
+      <slot name="loadmore"></slot>
     </view>
   </scroll-view>
+  <view style="height:{{hasAfterSlotHeight ? afterSlotHeight + 'px' : 'auto'}}" class="slot-empty">
+    <slot name="empty"></slot>
+  </view>
 </view>
