@@ -3,3 +3,18 @@
   display: block;
   width: 100%;
 }
+.wrap{
+  display: block;
+  height: 100%;
+  position: relative;
+}
+.slot-empty{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.wrp{
+  height: 200px;
+}

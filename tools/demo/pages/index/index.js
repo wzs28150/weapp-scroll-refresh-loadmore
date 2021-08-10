@@ -1,99 +1,102 @@
 // 获取应用实例
 
 // import createRecycleContext from '../../components/index'
-const app = getApp()
-const createRecycleContext = require('../../components/index.js').default
+// const app = getApp()
+
 
 // 提交wx.createRecycleContext能力
-
-// console.log(createRecycleContext)
+// const a = new createRecycleContext()
+// console.log(a)
 Page({
-  pageNum: 1,
-  ctx: Object,
-  windowWidth: 0,
   data: {
-    triggered: true
+    isEmpty: false,
+    list: []
+  },
+  onLoad: function name() {
+
   },
   onShow() {
-    const than = this
+    this.scroller = this.selectComponent('#scroller')
+    this.wholePageIndex = 0
+    this.wholeVideoList = []
+    this.currentRenderIndex = 0
+    this.index = 0
+    this.pageHeightArr = []
     wx.getSystemInfo({
-      success(res) {
-        than.windowWidth = res.windowWidth
-        than.getlist()
+      success: (res) => {
+        const {
+          windowHeight
+        } = res
+        this.windowHeight = windowHeight
+      }
+    })
+    this.getList()
+  },
+  setHeight() {
+    const that = this
+    const wholePageIndex = this.wholePageIndex
+    this.query = wx.createSelectorQuery()
+    // console.log(this.query.select(`#wrp_${wholePageIndex}`))
+    this.query.select(`#wrp_${wholePageIndex}`).boundingClientRect()
+    this.query.exec(function (res) {
+      that.pageHeightArr[wholePageIndex] = res[0] && res[0].height
+    })
+    this.observePage(wholePageIndex)
+  },
+  observePage(pageIndex) {
+    const that = this
+    const observerObj = wx.createIntersectionObserver(this).relativeToViewport({
+      top: 2 * this.windowHeight,
+      bottom: 2 * this.windowHeight
+    })
+    observerObj.observe(`#wrp_${pageIndex}`, (res) => {
+      if (res.intersectionRatio <= 0) {
+        that.setData({
+          ['list[' + pageIndex + ']']: {
+            height: that.pageHeightArr[pageIndex]
+          },
+        })
+      } else {
+        that.setData({
+          ['list[' + pageIndex + ']']: that.wholeVideoList[pageIndex],
+        })
       }
     })
   },
-  scrollToLower(e) {
-    console.log('滚动到底部----')
-    if (this.postflg) {
-      this.postflg = false // 请求完成前不再更改页码请求接口
-      this.pageNum++
-      this.getlist()
-    }
-  },
-  scrollToupper(e) {
-    const than = this
-    console.log(than.ctx)
-
-    than.ctx.splice(0, than.ctx.getList().length)
-    than.ctx.destroy()
-    than.ctx = null
-    than.pageNum = 1
-    than.getlist()
-    // setTimeout(() => {
-    //   than.setData({
-    //     triggered: false
-    //   })
-    // }, 500)
-  },
-  getlist() {
+  getList() {
+    const wholePageIndex = this.wholePageIndex
+    this.currentRenderIndex = wholePageIndex
     const than = this
     wx.request({
       url: 'http://82.157.27.90:9099/mock/28/index/list',
       data: {
-        page: than.pageNum,
+        page: wholePageIndex,
         pagenum: 10,
       },
       method: 'get',
       success(res) {
         if (res.data.code === 200) {
-          // append  RecycleContext 对象提供的方法:在当前的长列表数据上追加list数据
-
-          than.ctx = createRecycleContext({
-            id: 'recycleId',
-            dataKey: 'recycleList',
-            page: than,
-            itemSize: {
-              width: than.windowWidth,
-              height: 1
-            },
-          })
-          // 由于接口模拟数据不能自增全部id,处理id
-          const list = res.data.data.list
-          for (let i = 0; i < list.length; i++) {
-            list[i].id = 3 * (than.pageNum - 1) + i
-          }
-          than.ctx.append(res.data.data.list, function () {
-            wx.createSelectorQuery()
-              .select('.scroller-item')
-              .boundingClientRect(function (rectItem) {
-                // console.log(rectItem.height)
-                than.ctx.itemSize = {
-                  width: than.windowWidth,
-                  height: rectItem.height
-                }
-              })
-              .exec()
-          })
-          // console.log(than.ctx.getBoundingClientRect(1))
-          than.postflg = true
-          setTimeout(() => {
+          // than.scroller.getData(res.data.data.list)
+          if (res.data.data.list.length === 0 && wholePageIndex === 0) {
             than.setData({
-              triggered: false
+              isEmpty: true
             })
-          }, 500)
+          } else {
+            than.wholeVideoList[wholePageIndex] = res.data.data.list
+            const datas = {}
+            datas['list[' + wholePageIndex + ']'] = res.data.data.list
+            // console.log(res.data.data.list)
+            than.setData(datas, () => {
+              console.log(than.data)
+              than.setHeight()
+              than.wholePageIndex += 1
+            })
+          }
         }
       }
     })
+  },
+  refresh() {
+    console.log(1)
   }
 })

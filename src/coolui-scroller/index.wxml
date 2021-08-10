@@ -1,27 +1,33 @@
 <!-- components/coolui-scroller/coolui-scroller.wxml -->
-<view bindtouchstart='_beginToScroll' style="height:{{useInPage ? totalHeight + (hasBeforeSlotHeight ? beforeSlotHeight : 0) + (hasAfterSlotHeight ? afterSlotHeight : 0) : height}}px;width:{{width}}px;transform:translateZ(0);-webkit-transform:translateZ(0);" id="content" class="wrap">
-  <view style="height:{{hasHeaderSlotHeight ? headerSlotHeight + 'px' : 'auto'}}" class="slot-header">
+<view id="content" class="wrap">
+  <view class="slot-header">
     <slot name="header"></slot>
   </view>
-  <scroll-view bindscroll="_scrollViewDidScroll" class="content" style='height:100%;position: relative;' scroll-y="{{useInPage ? false : scrollY}}" scroll-x="{{false}}" upper-threshold="{{upperThreshold}}" lower-threshold="{{lowerThreshold}}" scroll-top="{{innerScrollTop}}" scroll-into-view="{{innerScrollIntoView}}" scroll-with-animation="{{scrollWithAnimation}}"        bindrefresherrefresh="_scrollToUpper" bindscrolltolower="_scrollToLower" scroll-anchoring enable-back-to-top="{{enableBackToTop}}" throttle="{{throttle}}" refresher-enabled="{{true}}" enhanced="{{true}}" refresher-threshold="70" fast-deceleration="{{true}}"  refresher-triggered="{{triggered}}" >
-    <view style="position: absolute;z-index:1;width:100%;left: 0;top: 0;opacity: 0;visibility: hidden;">
-      <slot name="itemsize"></slot>
-    </view>
-    <view style="height:{{hasBeforeSlotHeight ? beforeSlotHeight + 'px' : 'auto'}}" class="slot-before">
-      <slot name="before"></slot>
-    </view>
-    <view style='position:relative;width:100%;z-index:10;background: url("{{placeholderImageStr}}") repeat;height:{{totalHeight}}px;'>
-      <!-- <view class='before' style="height:{{innerBeforeHeight}}px"></view> -->
-      <view style="position: absolute;left:0;width:100%;top:{{innerBeforeHeight}}px;">
-        <slot></slot>
-      </view>
-      <!-- <view class='after' style="height:{{innerAfterHeight}}px"></view> -->
-    </view>
-    <view style="height:{{hasAfterSlotHeight ? afterSlotHeight + 'px' : 'auto'}}" class="slot-loadmore">
+  <!-- <scroll-view scroll-y="true" class="scroll" enhanced="{{true}}" fast-deceleration="{{true}}" refresher-threshold="{{100}}" bindscrolltolower="_loadmore"    bindrefresherrefresh="onRefresh" bindrefresherrestore="onRestore"    refresher-triggered="{{triggered}}" style="height:{{contentHeight}}px"> -->
+
+<scroll-view
+	 scroll-y
+	 class="scroll"
+	 enhanced="{{true}}"
+	 fast-deceleration="{{true}}"
+	 refresher-enabled="{{true}}"
+	 refresher-threshold="{{100}}"
+	 refresher-background="#f2f2f2"
+	 refresher-triggered="{{triggered}}"
+	 bindrefresherpulling="onPulling"
+	 bindrefresherrefresh="onRefresh"
+	 bindrefresherrestore="onRestore"
+	 bindscrolltolower="_loadmore"
+	 bindscroll="scroll"
+	 style="height:{{contentHeight}}px"
+	>
+
+    <slot></slot>
+    <view class="slot-loadmore">
       <slot name="loadmore"></slot>
     </view>
   </scroll-view>
-  <view style="height:{{hasAfterSlotHeight ? afterSlotHeight + 'px' : 'auto'}}" class="slot-empty">
+  <view style="height:{{contentHeight}}px" wx:if="{{isEmpty}}" class="slot-empty">
     <slot name="empty"></slot>
   </view>
 </view>
