@@ -24,7 +24,8 @@ Component({
   data: {
     contentHeight: 0,
     triggered: false,
-    timeout: null
+    timeout: null,
+    isBackToTopShow: false
   },
 
   ready() {
@@ -91,8 +92,19 @@ Component({
     onRestore() {
       this.triggerEvent('refresh')
     },
-    scroll() {
-
+    scroll(e) {
+      if (e.detail.scrollTop > 100 && this.data.isBackToTopShow == false) {
+        this.setData({
+          isBackToTopShow: true
+        })
+      } else if (e.detail.scrollTop <= 100 && this.data.isBackToTopShow == true) {
+        this.setData({
+          isBackToTopShow: false
+        })
+      }
+    },
+    backToTop() {
+      this.triggerEvent('refresh')
     }
   }
 })

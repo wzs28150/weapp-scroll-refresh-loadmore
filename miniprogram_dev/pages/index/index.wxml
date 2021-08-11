@@ -12,7 +12,7 @@
       <coolui-scroller-item  wx:for="{{ listSingleItem }}" wx:for-index="index" wx:for-item="listItem" wx:key="index">
         <view class="item">
           <image class='item-image' src="{{listItem.img}}"></image>
-          <view class="item-title">{{listItem.id}}.{{listItem.title}}</view>
+          <view class="item-title">{{(pageIndex * 3) +  listItem.id}}.{{listItem.title}}</view>
         </view>
       </coolui-scroller-item>
       <!-- item组件循环项 -->

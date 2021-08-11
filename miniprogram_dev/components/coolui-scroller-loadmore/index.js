@@ -5,8 +5,7 @@ Component({
   },
   relations: {
     './coolui-scroller': {
-      type: 'parent', // 关联的目标节点应为子节点
-      linked() {}
+      type: 'parent' // 关联的目标节点应为子节点
     }
   },
   /**
@@ -14,10 +13,6 @@ Component({
    */
   properties: {
     noMoreTextStyle: {
-      type: String,
-      value: ''
-    },
-    moreBtnStyle: {
       type: String,
       value: ''
     },
