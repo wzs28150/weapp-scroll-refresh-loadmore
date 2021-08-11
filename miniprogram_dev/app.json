@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "default"
+  },
+  "sitemapLocation": "sitemap.json"
+}

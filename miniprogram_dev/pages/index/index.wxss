@@ -1,0 +1,24 @@
+@import "../../components/index.wxss";
+.page {
+    height          : 100vh;
+    background-color: #e5e5e5;
+}
+
+
+.item {
+    padding: 30rpx 30rpx 0;
+}
+
+.item-image {
+    display   : block;
+    width     : 100%;
+    /* display: block; */
+}
+
+.item-title {
+    font-size       : 32rpx;
+    line-height     : 3em;
+    background-color: #fff;
+    padding         : 0 30rpx;
+}
+

@@ -1,0 +1,29 @@
+/* components/coolui-scroller/coolui-scroller.wxss */
+:host {
+  display: block;
+  width: 100%;
+}
+.wrap{
+  display: block;
+  height: 100%;
+  position: relative;
+}
+.slot-empty{
+  position: absolute;
+  background-color: #e5e5e5;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.wrp{
+  height: 200px;
+}
+/* .scroll {
+  display: block;
+}
+.scroll.flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */

@@ -1,0 +1,3 @@
+<view class="coolui-scroller-empty">
+<image src="{{imgUrl}}"></image>
+</view>

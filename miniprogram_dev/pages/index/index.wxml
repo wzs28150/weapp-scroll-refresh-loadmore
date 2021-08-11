@@ -1,0 +1,29 @@
+<view class="page">
+  <coolui-scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" isEmpty="{{isEmpty}}">
+    <!-- 头部区域 -->
+    <view slot="header">
+      <view class="header">头部</view>
+    </view>
+    <!-- 头部区域 -->
+    <!-- 列表 -->
+    <!-- page组件循环页 -->
+    <coolui-scroller-page wx:for="{{ list }}" id="wrp_{{pageIndex}}" wx:for-index="pageIndex" wx:for-item="listSingleItem" wx:key="index" pageList="{{ listSingleItem }}">
+      <!-- item组件循环项 -->
+      <coolui-scroller-item  wx:for="{{ listSingleItem }}" wx:for-index="index" wx:for-item="listItem" wx:key="index">
+        <view class="item">
+          <image class='item-image' src="{{listItem.img}}"></image>
+          <view class="item-title">{{listItem.id}}.{{listItem.title}}</view>
+        </view>
+      </coolui-scroller-item>
+      <!-- item组件循环项 -->
+    </coolui-scroller-page>
+    <!-- page组件循环页 -->
+    <!-- 列表 -->
+    <!-- 加载更多组件 -->
+    <coolui-scroller-loadmore slot="loadmore" status="{{loadMoreSetting.status}}" loadingText="{{loadMoreSetting.loadingText}}" noMoreText="{{loadMoreSetting.noMoreText}}" moreText="{{loadMoreSetting.moreText}}" color="{{loadMoreSetting.color}}" />
+    <!-- 加载更多组件 -->
+    <!-- 空列表组件 -->
+    <coolui-scroller-empty slot="empty"/>
+    <!-- 空列表组件 -->
+  </coolui-scroller>
+</view>

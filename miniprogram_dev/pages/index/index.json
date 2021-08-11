@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "coolui-scroller": "../../components/coolui-scroller/index",
+    "coolui-scroller-page": "../../components/coolui-scroller-page/index",
+    "coolui-scroller-item": "../../components/coolui-scroller-item/index",
+    "coolui-scroller-loadmore": "../../components/coolui-scroller-loadmore/index",
+    "coolui-scroller-empty": "../../components/coolui-scroller-empty/index"
+  },
+  "pageOrientation": "auto"
+}
