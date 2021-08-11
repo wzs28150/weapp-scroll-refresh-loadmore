@@ -1,3 +1,6 @@
 <view class="coolui-scroller-empty">
-<image src="{{imgUrl}}"></image>
+  <view class="coolui-scroller-empty-inner">
+    <image src="{{emptyImg}}" mode="aspectFit" wx:if="{{emptyImg}}" class="empty-img img-class"></image>
+    <view class="empty-text text-class">{{emptyText}}</view>
+  </view>
 </view>

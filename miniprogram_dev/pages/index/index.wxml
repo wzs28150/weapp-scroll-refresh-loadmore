@@ -2,7 +2,7 @@
   <coolui-scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" isEmpty="{{isEmpty}}">
     <!-- 头部区域 -->
     <view slot="header">
-      <view class="header">头部</view>
+      <view class="header">头部组件区</view>
     </view>
     <!-- 头部区域 -->
     <!-- 列表 -->
@@ -23,7 +23,7 @@
     <coolui-scroller-loadmore slot="loadmore" status="{{loadMoreSetting.status}}" loadingText="{{loadMoreSetting.loadingText}}" noMoreText="{{loadMoreSetting.noMoreText}}" moreText="{{loadMoreSetting.moreText}}" color="{{loadMoreSetting.color}}" />
     <!-- 加载更多组件 -->
     <!-- 空列表组件 -->
-    <coolui-scroller-empty slot="empty"/>
+    <coolui-scroller-empty slot="empty" img-class="empty-img" text-class="empty-text" emptyText="{{emptySetting.text}}" emptyImg="{{emptySetting.img}}"/>
     <!-- 空列表组件 -->
   </coolui-scroller>
 </view>

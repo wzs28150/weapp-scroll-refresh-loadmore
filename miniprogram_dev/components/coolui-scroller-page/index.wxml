@@ -1,6 +1,6 @@
 <view class="coolui-scroller-page">
-  <block wx:if="{{ listSingleItem.length > 0 }}">
+  <block wx:if="{{ pageList.length > 0 }}">
     <slot></slot>
   </block>
-  <view wx:else style="height: {{ listSingleItem.height}}px"></view>
+  <view wx:else style="height: {{ pageList.height}}px"></view>
 </view>

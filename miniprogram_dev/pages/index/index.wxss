@@ -1,24 +1,41 @@
 @import "../../components/index.wxss";
+
 .page {
-    height          : 100vh;
+    height: 100vh;
     background-color: #e5e5e5;
 }
 
-
+/* 列表项自定义结构样式 */
 .item {
     padding: 30rpx 30rpx 0;
 }
 
 .item-image {
-    display   : block;
-    width     : 100%;
+    display: block;
+    width: 100%;
     /* display: block; */
 }
 
 .item-title {
-    font-size       : 32rpx;
-    line-height     : 3em;
+    font-size: 32rpx;
+    line-height: 3em;
     background-color: #fff;
-    padding         : 0 30rpx;
+    padding: 0 30rpx;
 }
 
+.header {
+    height: 100rpx;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* empty组件可冲突样式 */
+.empty-img {
+    width: 40vw !important;
+}
+
+.empty-text {
+    color: #666 !important;
+}

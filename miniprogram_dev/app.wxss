@@ -10,3 +10,7 @@ page{
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.empty-img{
+  width: 40vw;
+}

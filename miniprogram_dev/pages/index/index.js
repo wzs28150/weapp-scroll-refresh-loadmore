@@ -13,7 +13,9 @@ Page({
       color: '#999'
     },
     emptySetting: {
-      img: '../../img/empty.png'
+      // img: '../../img/empty.png',
+      img: 'http://www.365editor.com/images/nodata.png',
+      text: '暂无文章'
     }
   },
 
@@ -61,7 +63,7 @@ Page({
           url: 'http://82.157.27.90:9099/mock/28/index/list',
           data: {
             page: wholePageIndex + 1,
-            isempty: 1,
+            isempty: 0, // 设置为1可测试空数据
             pagenum: 10,
           },
           method: 'get',
