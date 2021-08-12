@@ -9,27 +9,37 @@ function observePage(pageIndex, that) {
   })
   observerObj.observe(`#wrp_${pageIndex}`, (res) => {
     if (res.intersectionRatio <= 0) {
-      that.setData({
-        ['list[' + pageIndex + ']']: {
-          height: that.pageHeightArr[pageIndex]
-        },
-      })
+      try {
+        that.setData({
+          ['list[' + pageIndex + ']']: [
+            {
+              height: that.pageHeightArr[pageIndex]
+            }
+          ],
+        })
+      } catch (error) {
+        console.log(error);
+      }
     } else {
-      that.setData({
-        ['list[' + pageIndex + ']']: that.wholeList[pageIndex],
-      })
+      try {
+        that.setData({
+          ['list[' + pageIndex + ']']: that.wholeList[pageIndex],
+        })
+      } catch (error) {
+        console.log(error);
+      }
     }
   })
 }
 
 function setHeight(that) {
-  const wholePageIndex = that.wholePageIndex
+  const page = that.param.page
   this.query = wx.createSelectorQuery()
-  this.query.select(`#wrp_${wholePageIndex}`).boundingClientRect()
+  this.query.select(`#wrp_${page}`).boundingClientRect()
   this.query.exec(function (res) {
-    that.pageHeightArr[wholePageIndex] = res[0] && res[0].height
+    that.pageHeightArr[page] = res[0] && res[0].height
   })
-  observePage(wholePageIndex, that)
+  observePage(page, that)
 }
 
 module.exports.setHeight = setHeight

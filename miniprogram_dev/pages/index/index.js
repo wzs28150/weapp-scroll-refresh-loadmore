@@ -5,6 +5,15 @@ Page({
   data: {
     isEmpty: false,
     list: [],
+    refreshSetting: {
+      type: 'default',
+      style: 'black',
+      background: {
+        color: "#f2f2f2"
+      },
+      isBackBtn: true,
+      shake: true
+    },
     loadMoreSetting: {
       status: 'more',
       moreText: '上拉加载更多',
@@ -20,8 +29,6 @@ Page({
   },
 
   onShow() {
-    // 设置分页
-    this.wholePageIndex = 0
     // 设置缓存全部数据
     this.wholeList = []
     // 设置当前渲染第几页
@@ -30,6 +37,11 @@ Page({
     this.pageHeightArr = []
     // 设置总页数
     this.totalPageNum = 0
+    // 设置分页
+    this.param = {
+      limit: 4,
+      page:  0
+    }
     wx.getSystemInfo({
       success: (res) => {
         const {
@@ -49,9 +61,9 @@ Page({
       than.setData({
         loadMoreSetting
       })
-      const wholePageIndex = this.wholePageIndex
-      this.currentRenderIndex = wholePageIndex
-      if (than.totalPageNum > 0 && wholePageIndex == than.totalPageNum) {
+      const page = this.param.page
+      this.currentRenderIndex = page
+      if (than.totalPageNum > 0 && page == than.totalPageNum) {
         const loadMoreSetting = than.data.loadMoreSetting
         loadMoreSetting.status = 'noMore'
         than.setData({
@@ -62,7 +74,7 @@ Page({
         wx.request({
           url: 'http://82.157.27.90:9099/mock/28/index/list',
           data: {
-            page: wholePageIndex + 1,
+            page: page + 1,
             isempty: 0, // 设置为1可测试空数据
             pagenum: 10,
           },
@@ -71,9 +83,9 @@ Page({
             if (res.data.code === 200) {
               // than.scroller.getData(res.data.data.list)
               // console.log(res.data.data.last)
-              // console.log(wholePageIndex)
+              // console.log(page)
               than.totalPageNum = res.data.data.last
-              if (res.data.data.list.length === 0 && wholePageIndex === 0) {
+              if (res.data.data.list.length === 0 && page === 0) {
                 const loadMoreSetting = than.data.loadMoreSetting
                 loadMoreSetting.status = 'noMore'
                 than.setData({
@@ -81,9 +93,9 @@ Page({
                   loadMoreSetting
                 })
               } else {
-                than.wholeList[wholePageIndex] = res.data.data.list
+                than.wholeList[page] = res.data.data.list
                 const datas = {}
-                datas['list[' + wholePageIndex + ']'] = res.data.data.list
+                datas['list[' + page + ']'] = res.data.data.list
                 setTimeout(() => {
                   than.setData(datas, () => {
                     utils.setHeight(than)
@@ -92,7 +104,7 @@ Page({
                     than.setData({
                       loadMoreSetting
                     })
-                    than.wholePageIndex += 1
+                    than.param.page += 1
                   })
                 }, 500)
               }
@@ -105,10 +117,13 @@ Page({
   refresh() {
     // 初始化缓存数据
     const that = this
-    this.wholePageIndex = 0
     this.wholeList = []
     this.currentRenderIndex = 0
     this.pageHeightArr = []
+    this.param = {
+      limit: 4,
+      page:  0
+    }
     that.setData({
       list: [],
     })

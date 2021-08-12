@@ -2,5 +2,5 @@
   <block wx:if="{{ pageList.length > 0 }}">
     <slot></slot>
   </block>
-  <view wx:else style="height: {{ pageList.height}}px"></view>
+  <view wx:else style="height: {{ pageList[0].height}}px"></view>
 </view>

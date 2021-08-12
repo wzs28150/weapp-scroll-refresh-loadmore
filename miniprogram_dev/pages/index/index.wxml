@@ -1,5 +1,5 @@
 <view class="page">
-  <coolui-scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" isEmpty="{{isEmpty}}">
+  <coolui-scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" refresh isEmpty="{{isEmpty}}" scrollOption="{{refreshSetting}}">
     <!-- 头部区域 -->
     <view slot="header">
       <view class="header">头部组件区</view>

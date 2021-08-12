@@ -3,7 +3,25 @@
   <view class="slot-header" id="header">
     <slot name="header"></slot>
   </view>
-  <scroll-view scroll-y class="scroll flex" enhanced="{{true}}" fast-deceleration="{{true}}" enable-back-to-top="{{true}}" refresher-enabled="{{true}}" refresher-threshold="{{100}}"  lower-threshold="{{100}}" refresher-background="#f2f2f2" refresher-triggered="{{triggered}}" bindrefresherpulling="onPulling" bindrefresherrefresh="onRefresh" bindrefresherrestore="onRestore" bindscrolltolower="onLoadmore" bindscroll="scroll" style="height:{{contentHeight}}px" scroll-top="{{top}}">
+  <scroll-view
+  scroll-y
+  class="scroll flex"
+  enhanced="{{false}}"
+  fast-deceleration="{{true}}"
+  enable-back-to-top="{{true}}"
+  refresher-enabled="{{true}}"
+  refresher-threshold="{{100}}"
+  lower-threshold="{{100}}"
+  refresher-default-style="{{scrollOption.type == 'default' ? scrollOption.style : 'none'}}"
+  refresher-background="{{scrollOption.background.color}}"
+  refresher-triggered="{{triggered}}"
+  bindrefresherpulling="onPulling"
+  bindrefresherrefresh="onRefresh"
+  bindrefresherrestore="onRestore"
+  bindscrolltolower="onLoadmore"
+  bindscroll="scroll"
+  style="height:{{contentHeight}}px"
+  >
     <slot></slot>
     <view class="slot-loadmore">
       <slot name="loadmore"></slot>
@@ -12,5 +30,5 @@
   <view style="height:{{contentHeight}}px" hidden="{{!isEmpty}}" class="slot-empty">
     <slot name="empty"></slot>
   </view>
-  <view class="backToTop" wx:if="{{isBackToTopShow}}" bindtap="backToTop"></view>
+  <view class="backToTop" wx:if="{{isBackToTopShow && scrollOption.isBackBtn}}" bindtap="backToTop"></view>
 </view>

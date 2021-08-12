@@ -15,6 +15,13 @@ Component({
     isEmpty: {
       type: Boolean,
       value: false
+    },
+    scrollOption: {
+      type: Object,
+      value: {
+        type: 'default',
+        isBackBtn: true
+      }
     }
   },
 
@@ -29,6 +36,7 @@ Component({
   },
 
   ready() {
+    console.log(this.data.scrollOption);
     this.setWapHeight()
   },
 
@@ -50,8 +58,6 @@ Component({
       }).exec()
     },
     debounce(fn, wait) {
-      // this.timeout = null
-      // return false
       const that = this
       that.setData({
         timeout: null
@@ -60,7 +66,6 @@ Component({
         if (that.data.timeout !== null) {
           clearTimeout(that.data.timeout)
         }
-
         const timeout = setTimeout(() => {
           fn()
         }, wait)
@@ -71,16 +76,15 @@ Component({
     },
     onLoadmore() {
       const that = this
-      // setTimeout(() => {
-      //   this.triggerEvent('loadmore')
-      // }, 500)
       this.debounce(function () {
         that.triggerEvent('loadmore')
+        if (that.data.scrollOption.shake) {
+          wx.vibrateShort();
+        }
       }, 500)()
     },
     onRefresh() {
       setTimeout(() => {
-        // this.triggerEvent('refresh')
         this.setData({
           triggered: false
         })
