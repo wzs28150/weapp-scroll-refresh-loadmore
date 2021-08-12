@@ -28,7 +28,7 @@ Page({
     }
   },
 
-  onShow() {
+  onLoad() {
     // 设置缓存全部数据
     this.wholeList = []
     // 设置当前渲染第几页
