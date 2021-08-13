@@ -1,4 +1,3 @@
-// components/coolui-scroller-item/coolui-scroller-item.js
 Component({
   relations: {
     './coolui-scroller': {
@@ -6,24 +5,55 @@ Component({
       linked() {}
     }
   },
-  /**
-   * 组件的属性列表
-   */
   properties: {
-  },
-
-  /**
-   * 组件的初始数据
-   */
-  data: {
-    // height: 100
-  },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
-    heightChange() {
+    top: {
+      type: String,
+      value: 0
+    },
+    bottom: {
+      type: String,
+      value: 0
+    },
+    left: {
+      type: String,
+      value: 0
+    },
+    right: {
+      type: String,
+      value: 0
+    },
+    key: {
+      type: String,
+      value: null
+    },
+    opacity: {
+      type: Number,
+      value: 0.5
     }
+  },
+  data: {
+    isTipShow: false
+  },
+  methods: {
+    close: function () {
+      try {
+        wx.setStorageSync(this.data.key, 'true')
+        this.setData({
+          isTipShow: true
+        })
+      } catch (e) {}
+    }
+  },
+  ready() {
+    try {
+      var isKey = wx.getStorageSync(this.data.key)
+      console.log(isKey);
+      if (isKey) {
+        console.log(isKey);
+        this.setData({
+          isTipShow: true
+        })
+      }
+    } catch (e) {}
   }
 })

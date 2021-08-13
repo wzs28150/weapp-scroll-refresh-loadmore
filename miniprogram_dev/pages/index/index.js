@@ -22,8 +22,8 @@ Page({
       color: '#999'
     },
     emptySetting: {
-      // img: '../../img/empty.png',
-      img: 'http://www.365editor.com/images/nodata.png',
+      img: '../../img/empty.png',
+      // img: 'http://www.365editor.com/images/nodata.png',
       text: '暂无文章'
     }
   },

@@ -26,4 +26,5 @@
     <coolui-scroller-empty slot="empty" img-class="empty-img" text-class="empty-text" emptyText="{{emptySetting.text}}" emptyImg="{{emptySetting.img}}"/>
     <!-- 空列表组件 -->
   </coolui-scroller>
+  <handtip top="下拉刷新"  bottom="上拉加载" opacity="0.7" key="hand1" />
 </view>

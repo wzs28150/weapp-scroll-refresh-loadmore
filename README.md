@@ -22,7 +22,7 @@
 3. ~~新增组件coolui-scroller-item~~
 4. ~~新增组件coolui-scroller-page~~
 5. ~~新增组件coolui-scroller-empty~~
-6. 新增组件coolui-scroller-handtip
+6. ~~新增组件coolui-scroller-handtip~~
 7. ~~新增组件coolui-scroller-loadmore~~
 8. 新增组件coolui-scroller-nav
 9. 新增组件coolui-scroller-refresh

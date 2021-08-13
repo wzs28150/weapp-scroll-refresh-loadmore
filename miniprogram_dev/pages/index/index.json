@@ -4,7 +4,8 @@
     "coolui-scroller-page": "../../components/coolui-scroller-page/index",
     "coolui-scroller-item": "../../components/coolui-scroller-item/index",
     "coolui-scroller-loadmore": "../../components/coolui-scroller-loadmore/index",
-    "coolui-scroller-empty": "../../components/coolui-scroller-empty/index"
+    "coolui-scroller-empty": "../../components/coolui-scroller-empty/index",
+    "handtip": "../../components/coolui-scroller-handtip/index"
   },
   "pageOrientation": "auto"
 }
