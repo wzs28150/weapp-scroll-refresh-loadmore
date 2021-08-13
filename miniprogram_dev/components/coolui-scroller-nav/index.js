@@ -10,6 +10,14 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    navList: [
+      {
+        title: '设置'
+      },
+      {
+        title: '设置'
+      }
+    ]
   },
 
   /**

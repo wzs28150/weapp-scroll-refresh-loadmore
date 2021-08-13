@@ -2,7 +2,16 @@
   <coolui-scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" refresh isEmpty="{{isEmpty}}" scrollOption="{{refreshSetting}}">
     <!-- 头部区域 -->
     <view slot="header">
-      <view class="header">头部组件区</view>
+      <view class="header">
+        <view class="xiala-nav">
+          <view class="xiala-nav-item">
+              设置
+          </view>
+          <view class="xiala-nav-item">
+              设置
+          </view>
+        </view>
+      </view>
     </view>
     <!-- 头部区域 -->
     <!-- 列表 -->
