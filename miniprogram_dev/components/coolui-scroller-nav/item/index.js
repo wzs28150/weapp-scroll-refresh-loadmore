@@ -14,6 +14,9 @@ Component({
     },
     value: {
       type: String
+    },
+    options: {
+      type: Array
     }
   },
 

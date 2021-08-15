@@ -4,11 +4,11 @@
     <!-- 头部区域 -->
     <view slot="header">
       <view class="header">
-        <view style="height:50rpx;width:100%"></view>
+        <!-- <view style="height:50rpx;width:100%"></view> -->
         <nav>
-          <nav-item title="设置" value="1"></nav-item>
-          <nav-item title="设置2" value="2"></nav-item>
-          <nav-item title="设置3" value="3"></nav-item>
+          <nav-item title="设置" value="1" options="{{options}}"></nav-item>
+          <nav-item title="设置2" value="2" options="{{options}}"></nav-item>
+          <nav-item title="设置3" value="3" options="{{options}}"></nav-item>
         </nav>
       </view>
     </view>
@@ -39,5 +39,4 @@
     <!-- 空列表组件 -->
   </scroller>
   <handtip top="下拉刷新" bottom="上拉加载" opacity="0.7" key="hand1" />
-  <view style="height: 100vh;"></view>
 </view>

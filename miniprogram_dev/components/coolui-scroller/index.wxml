@@ -1,6 +1,6 @@
 <!-- components/coolui-scroller/coolui-scroller.wxml -->
 <view id="content" class="wrap">
-  <view class="slot-header" id="header">
+  <view class="slot-header" id="header" >
     <slot name="header"></slot>
   </view>
   <scroll-view

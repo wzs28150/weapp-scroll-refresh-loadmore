@@ -25,7 +25,21 @@ Page({
       img: '../../img/empty.png',
       // img: 'http://www.365editor.com/images/nodata.png',
       text: '暂无文章'
-    }
+    },
+    options: [
+      {
+        id: 1,
+        title:"测试选项1"
+      },
+      {
+        id: 2,
+        title:"测试选项2"
+      },
+      {
+        id: 3,
+        title:"测试选项3"
+      }
+    ]
   },
 
   onLoad() {

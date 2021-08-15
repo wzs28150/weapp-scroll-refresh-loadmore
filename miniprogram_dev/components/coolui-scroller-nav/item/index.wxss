@@ -37,7 +37,7 @@
 }
 
 .dropdown-menu {
-  position: fixed;
+  position: absolute;
   left: 0;
   width: 100%;
   z-index: 2;
@@ -71,4 +71,10 @@
 .dropdown-menu-inner.on {
   transform: translateY(0);
   transition: transform 0.4s;
+}
+
+.option-item{
+  line-height: 90rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
 }
