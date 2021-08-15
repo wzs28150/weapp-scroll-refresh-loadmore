@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "components/coolui-scroller-nav/item/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#000",

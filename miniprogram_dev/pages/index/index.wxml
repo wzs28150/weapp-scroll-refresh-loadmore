@@ -1,39 +1,41 @@
 <view class="page">
-  <coolui-scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" refresh isEmpty="{{isEmpty}}" scrollOption="{{refreshSetting}}">
+  <coolui-scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" refresh
+    isEmpty="{{isEmpty}}" scrollOption="{{refreshSetting}}">
     <!-- 头部区域 -->
     <view slot="header">
       <view class="header">
-        <view class="xiala-nav">
-          <view class="xiala-nav-item">
-              设置
-          </view>
-          <view class="xiala-nav-item">
-              设置
-          </view>
-        </view>
+        <view style="height:50rpx;width:100%"></view>
+        <nav>
+          <nav-item title="设置"></nav-item>
+          <nav-item title="设置2"></nav-item>
+        </nav>
       </view>
     </view>
     <!-- 头部区域 -->
     <!-- 列表 -->
     <!-- page组件循环页 -->
-    <coolui-scroller-page wx:for="{{ list }}" id="wrp_{{pageIndex}}" wx:for-index="pageIndex" wx:for-item="listSingleItem" wx:key="index" pageList="{{ listSingleItem }}">
+    <scroller-page wx:for="{{ list }}" id="wrp_{{pageIndex}}" wx:for-index="pageIndex" wx:for-item="listSingleItem"
+      wx:key="index" pageList="{{ listSingleItem }}">
       <!-- item组件循环项 -->
-      <coolui-scroller-item  wx:for="{{ listSingleItem }}" wx:for-index="index" wx:for-item="listItem" wx:key="index">
+      <scroller-item wx:for="{{ listSingleItem }}" wx:for-index="index" wx:for-item="listItem" wx:key="index">
         <view class="item">
           <image class='item-image' src="{{listItem.img}}"></image>
-          <view class="item-title">{{(pageIndex * 3) +  listItem.id}}.{{listItem.title}}</view>
+          <view class="item-title">{{(pageIndex * 3) + listItem.id}}.{{listItem.title}}</view>
         </view>
-      </coolui-scroller-item>
+      </scroller-item>
       <!-- item组件循环项 -->
-    </coolui-scroller-page>
+    </scroller-page>
     <!-- page组件循环页 -->
     <!-- 列表 -->
     <!-- 加载更多组件 -->
-    <coolui-scroller-loadmore slot="loadmore" status="{{loadMoreSetting.status}}" loadingText="{{loadMoreSetting.loadingText}}" noMoreText="{{loadMoreSetting.noMoreText}}" moreText="{{loadMoreSetting.moreText}}" color="{{loadMoreSetting.color}}" />
+    <scroller-loadmore slot="loadmore" status="{{loadMoreSetting.status}}" loadingText="{{loadMoreSetting.loadingText}}"
+      noMoreText="{{loadMoreSetting.noMoreText}}" moreText="{{loadMoreSetting.moreText}}"
+      color="{{loadMoreSetting.color}}" />
     <!-- 加载更多组件 -->
     <!-- 空列表组件 -->
-    <coolui-scroller-empty slot="empty" img-class="empty-img" text-class="empty-text" emptyText="{{emptySetting.text}}" emptyImg="{{emptySetting.img}}"/>
+    <coolui-scroller-empty slot="empty" img-class="empty-img" text-class="empty-text" emptyText="{{emptySetting.text}}"
+      emptyImg="{{emptySetting.img}}" />
     <!-- 空列表组件 -->
   </coolui-scroller>
-  <handtip top="下拉刷新"  bottom="上拉加载" opacity="0.7" key="hand1" />
+  <handtip top="下拉刷新" bottom="上拉加载" opacity="0.7" key="hand1" />
 </view>

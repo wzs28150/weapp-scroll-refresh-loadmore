@@ -1,5 +1,3 @@
-@import "../../components/index.wxss";
-
 .page {
     height: 100vh;
     background-color: #f2f2f2;
@@ -25,11 +23,8 @@
 }
 
 .header {
-    height: 100rpx;
     background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* box-shadow: 0 0 5px #ccc; */
 }
 
 /* empty组件可冲突样式 */

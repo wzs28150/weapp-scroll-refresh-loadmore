@@ -1,0 +1,3 @@
+<view class="coolui-scroller-nav">
+  <slot></slot>
+</view>

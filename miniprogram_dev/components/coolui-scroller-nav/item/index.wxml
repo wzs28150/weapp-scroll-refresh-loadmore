@@ -1,0 +1,6 @@
+<view class="coolui-scroller-nav-item" bindtap="toggel">
+  <view class="item-title">
+    <view class="item-title-inner">{{title}}</view>
+  </view>
+</view>
+<view class="overlay" style="height:{{overlayHeight}}px;" hidden="{{!isOverLayShow}}"></view>

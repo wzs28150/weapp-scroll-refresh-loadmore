@@ -1,4 +1,0 @@
-<!--components/coolui-scroller-item/coolui-scroller-item.wxml-->
-<view class="wx-coolui-scroller-item">
-  <slot></slot>
-</view>

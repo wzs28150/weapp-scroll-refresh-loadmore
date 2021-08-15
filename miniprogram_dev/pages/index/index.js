@@ -42,14 +42,7 @@ Page({
       limit: 4,
       page:  0
     }
-    wx.getSystemInfo({
-      success: (res) => {
-        const {
-          windowHeight
-        } = res
-        this.windowHeight = windowHeight
-      }
-    })
+    
     this.getList()
   },
   getList() {
