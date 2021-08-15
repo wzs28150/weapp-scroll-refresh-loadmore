@@ -1,10 +1,18 @@
 // components/coolui-scroller-nav/item/index.js
 Component({
-  /**
-   * 组件的属性列表
-   */
+  relations: {
+    '../index/index': {
+      type: 'parent',
+      linked: function (target) {
+        // console.log(target);
+      },
+    }
+  },
   properties: {
     title: {
+      type: String
+    },
+    value: {
       type: String
     }
   },
@@ -13,40 +21,43 @@ Component({
    * 组件的初始数据
    */
   data: {
-    overlayHeight: 0,
-    isOverLayShow: false
+    isDropdownShow: false,
+    overlayDuration: 0,
+    dropAnimation: {}
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    setOverlayHeight() {
+    toggel() {
+      var nodes = this.getRelationNodes('../index/index')
+      this.setData({
+        overlayDuration: nodes[0].data.overlayDuration
+      })
+      nodes[0].toggel(this.data.value)
+    },
+    toggelDropdown(active) {
       const that = this
-      wx.getSystemInfo({
-        success: (sysRes) => {
-          const {
-            windowHeight
-          } = sysRes
-          const query = wx.createSelectorQuery().in(this)
-          query.select(`.overlay`).boundingClientRect()
-          query.exec(function (res) {
-            console.log(res);
-            that.setData({
-              overlayHeight: windowHeight - res[0].top
-            })
+      if (active === this.data.value) {
+        if (this.data.isDropdownShow === false) {
+          this.setData({
+            isDropdownShow: true,
+          })
+        } else {
+          this.setData({
+            isDropdownShow: false,
           })
         }
-      })
-
-    },
-    toggel(){
-      this.setData({
-        isOverLayShow: !this.data.isOverLayShow
-      })
+      } else {
+        this.setData({
+          isDropdownShow: false,
+        })
+      }
     }
+
   },
   ready() {
-    this.setOverlayHeight()
+
   }
 })

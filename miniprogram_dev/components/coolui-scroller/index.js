@@ -4,8 +4,23 @@ Component({
     addGlobalClass: true // 允许外部修改样式
   },
   relations: {
-    '../coolui-scroller-item/coolui-scroller-item': {
-      type: 'child'
+    '../coolui-scroller-page/index': {
+      type: 'child',
+      linked: function(target) {
+        console.log(target);
+      },
+    },
+    '../coolui-scroller-nav/index/index': {
+      type: 'child',
+      linked: function(target) {
+        // console.log(target);
+      },
+    },
+    '../coolui-scroller-empty': {
+      type: 'child',
+      linked: function(target) {
+        console.log(target);
+      },
     }
   },
   /**
@@ -36,7 +51,7 @@ Component({
   },
 
   ready() {
-    console.log(this.data.scrollOption);
+    // console.log(this.data.scrollOption);
     this.setWapHeight()
   },
 

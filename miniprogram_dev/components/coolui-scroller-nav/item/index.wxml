@@ -3,4 +3,8 @@
     <view class="item-title-inner">{{title}}</view>
   </view>
 </view>
-<view class="overlay" style="height:{{overlayHeight}}px;" hidden="{{!isOverLayShow}}"></view>
+<view class="dropdown-menu {{isDropdownShow ? 'on' : ''}}"  >
+  <view class="dropdown-menu-inner {{isDropdownShow ? 'on' : ''}}" >
+    {{title}}
+  </view>
+</view>

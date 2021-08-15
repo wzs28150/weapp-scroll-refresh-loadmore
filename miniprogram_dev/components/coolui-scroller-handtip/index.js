@@ -32,7 +32,7 @@ Component({
     }
   },
   data: {
-    isTipShow: false
+    isTipShow: true
   },
   methods: {
     close: function () {
@@ -41,19 +41,21 @@ Component({
         this.setData({
           isTipShow: true
         })
-      } catch (e) {}
+      } catch (e) {
+
+      }
     }
   },
   ready() {
     try {
       var isKey = wx.getStorageSync(this.data.key)
-      console.log(isKey);
-      if (isKey) {
-        console.log(isKey);
+      if (!isKey) {
         this.setData({
-          isTipShow: true
+          isTipShow: false
         })
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(1);
+    }
   }
 })
