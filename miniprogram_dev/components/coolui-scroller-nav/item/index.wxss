@@ -66,11 +66,13 @@
   background-color: #fff;
   transform: translateY(-100%);
   transition: transform 0.4s;
+  opacity: 0;
 }
 
 .dropdown-menu-inner.on {
   transform: translateY(0);
   transition: transform 0.4s;
+  opacity: 1;
 }
 
 .option-item{
