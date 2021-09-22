@@ -1,0 +1,35 @@
+<view class="page">
+  <scroller class="{{(loadMoreSetting.status == 'loading' && list.length == 0) ? 'isloading' : ''}}" id="scroller" bind:loadmore="getList" bind:refresh="refresh" refresh isEmpty="{{isEmpty}}"  scrollOption="{{refreshSetting}}">
+    <!-- 头部区域 -->
+    <view slot="header">
+      <view class="header">
+        <!-- <view style="height:50rpx;width:100%"></view> -->
+        <!-- <nav>
+          <nav-item wx:for="{{optionsList}}" wx:key="title"  title="{{item.title}}" value="{{index}}" color="#333" active-color="#1989fa" options="{{item.options}}"></nav-item>
+        </nav> -->
+      </view>
+    </view>
+    <!-- 头部区域 -->
+    <!-- 列表 -->
+    <!-- page组件循环页 -->
+    <scroller-page wx:for="{{ list }}" id="wrp_{{pageIndex}}" wx:for-index="pageIndex" wx:for-item="listSingleItem" wx:key="index" pageList="{{ listSingleItem }}">
+      <!-- item组件循环项 -->
+      <scroller-item wx:for="{{ listSingleItem }}" wx:for-index="index" wx:for-item="listItem" wx:key="index">
+        <view class="item">
+          <image class='item-image' src="{{listItem.img}}"></image>
+          <view class="item-title">{{(pageIndex * 3) + listItem.id}}.{{listItem.title}}</view>
+        </view>
+      </scroller-item>
+      <!-- item组件循环项 -->
+    </scroller-page>
+    <!-- page组件循环页 -->
+    <!-- 列表 -->
+    <!-- 加载更多组件 -->
+    <scroller-loadmore slot="loadmore" status="{{loadMoreSetting.status}}" loadingText="{{loadMoreSetting.loadingText}}" noMoreText="{{loadMoreSetting.noMoreText}}" moreText="{{loadMoreSetting.moreText}}" color="{{loadMoreSetting.color}}" />
+    <!-- 加载更多组件 -->
+    <!-- 空列表组件 -->
+    <scroller-empty slot="empty" img-class="empty-img" text-class="empty-text" emptyText="{{emptySetting.text}}" emptyImg="{{emptySetting.img}}" />
+    <!-- 空列表组件 -->
+  </scroller>
+  <handtip top="下拉刷新" bottom="上拉加载" opacity="0.7" key="hand1" />
+</view>

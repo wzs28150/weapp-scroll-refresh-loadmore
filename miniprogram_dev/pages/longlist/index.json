@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "scroller": "../../components/coolui-scroller/index",
+    "scroller-page": "../../components/coolui-scroller-page/index",
+    "scroller-item": "../../components/coolui-scroller-item/index",
+    "scroller-loadmore": "../../components/coolui-scroller-loadmore/index",
+    "scroller-empty": "../../components/coolui-scroller-empty/index",
+    "handtip": "../../components/coolui-scroller-handtip/index",
+    "nav": "../../components/coolui-scroller-nav/index/index",
+    "nav-item": "../../components/coolui-scroller-nav/item/index"
+  },
+  "pageOrientation": "auto",
+  "navigationBarTitleText": "长列表"
+}

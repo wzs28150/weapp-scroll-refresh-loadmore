@@ -68,17 +68,17 @@ Component({
         }
       })
     },
-    toggel(active) {
+    toggle(active) {
       const that = this
       let flag = false;
       flag = (active === that.data.active && that.data.active !== null) ? true : false;
       that.setData({
         active: active
       })
-      this.toggelOverlay(flag)
-      this.toggelDropdown();
+      this.toggleOverlay(flag)
+      this.toggleDropdown();
     },
-    toggelOverlay(flag) {
+    toggleOverlay(flag) {
       const that = this
       var animation = wx.createAnimation({
         duration: that.data.overlayDuration,
@@ -123,10 +123,10 @@ Component({
       }
       this.setOverlayHeight()
     },
-    toggelDropdown() {
+    toggleDropdown() {
       var nodes = this.getRelationNodes('../item/index')
       nodes.forEach((item,index) => {
-        item.toggelDropdown(this.data.active)
+        item.toggleDropdown(this.data.active)
       });
     }
   },

@@ -31,5 +31,8 @@ Component({
    */
   methods: {
 
+  },
+  ready(){
+    // console.log(this.data.pageList);
   }
 })

@@ -35,6 +35,10 @@ Component({
     color: {
       type: String,
       value: '#6190e8'
+    },
+    shake: {
+      type: Boolean,
+      value: false
     }
   },
 

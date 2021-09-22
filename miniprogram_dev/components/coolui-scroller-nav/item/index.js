@@ -17,6 +17,12 @@ Component({
     },
     options: {
       type: Array
+    },
+    color: {
+      type: String
+    },
+    activeColor: {
+      type: String
     }
   },
 
@@ -33,14 +39,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    toggel() {
+    toggle() {
       var nodes = this.getRelationNodes('../index/index')
       this.setData({
         overlayDuration: nodes[0].data.overlayDuration
       })
-      nodes[0].toggel(this.data.value)
+      // console.log(this.data.value);
+      nodes[0].toggle(this.data.value)
     },
-    toggelDropdown(active) {
+    toggleDropdown(active) {
       const that = this
       if (active === this.data.value) {
         if (this.data.isDropdownShow === false) {
@@ -61,6 +68,6 @@ Component({
 
   },
   ready() {
-
+    console.log(this.data.activeColor);
   }
 })

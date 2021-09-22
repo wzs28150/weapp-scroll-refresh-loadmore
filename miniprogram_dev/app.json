@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "components/coolui-scroller-nav/item/index"
+    "pages/longlist/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#000",

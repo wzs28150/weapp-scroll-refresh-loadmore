@@ -37,7 +37,7 @@
     "packNpmRelationList": [],
     "minifyWXSS": true,
     "showES6CompileOption": false,
-    "skeletonGenerateFilesWithoutConfirm": true
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.1",

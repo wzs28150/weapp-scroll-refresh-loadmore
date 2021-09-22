@@ -20,11 +20,13 @@
   bindrefresherrestore="onRestore"
   bindscrolltolower="onLoadmore"
   bindscroll="scroll"
-  style="height:{{contentHeight}}px"
+  style="height:{{contentHeight}}px;"
   >
-    <slot></slot>
-    <view class="slot-loadmore">
-      <slot name="loadmore"></slot>
+    <view class="inner" style="min-height:{{contentHeight}}px;">
+      <slot></slot>
+      <view class="slot-loadmore">
+        <slot name="loadmore"></slot>
+      </view>
     </view>
   </scroll-view>
   <view style="height:{{contentHeight}}px" hidden="{{!isEmpty}}" class="slot-empty">

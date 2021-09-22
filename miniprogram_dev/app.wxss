@@ -1,16 +1,23 @@
-page{
+page {
   height: 100vh;
 }
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
 
-.empty-img{
+.container {
+  height         : 100%;
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: space-between;
+  padding        : 200rpx 0;
+  box-sizing     : border-box;
+}
+
+.empty-img {
   width: 40vw;
+}
+
+.isloading .inner {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
 }

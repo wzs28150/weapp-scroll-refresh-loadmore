@@ -1,42 +1,10 @@
 <view class="page">
-  <scroller class="scroller flex" id="scroller" bind:loadmore="getList" bind:refresh="refresh" refresh
-    isEmpty="{{isEmpty}}" scrollOption="{{refreshSetting}}">
-    <!-- 头部区域 -->
-    <view slot="header">
-      <view class="header">
-        <!-- <view style="height:50rpx;width:100%"></view> -->
-        <nav>
-          <nav-item title="设置" value="1" options="{{options}}"></nav-item>
-          <nav-item title="设置2" value="2" options="{{options}}"></nav-item>
-          <nav-item title="设置3" value="3" options="{{options}}"></nav-item>
-        </nav>
-      </view>
+  <view class="inner">
+    <view class="logo">
+      <image src="../../img/logo.png" class="logo"></image>
     </view>
-    <!-- 头部区域 -->
-    <!-- 列表 -->
-    <!-- page组件循环页 -->
-    <scroller-page wx:for="{{ list }}" id="wrp_{{pageIndex}}" wx:for-index="pageIndex" wx:for-item="listSingleItem"
-      wx:key="index" pageList="{{ listSingleItem }}">
-      <!-- item组件循环项 -->
-      <scroller-item wx:for="{{ listSingleItem }}" wx:for-index="index" wx:for-item="listItem" wx:key="index">
-        <view class="item">
-          <image class='item-image' src="{{listItem.img}}"></image>
-          <view class="item-title">{{(pageIndex * 3) + listItem.id}}.{{listItem.title}}</view>
-        </view>
-      </scroller-item>
-      <!-- item组件循环项 -->
-    </scroller-page>
-    <!-- page组件循环页 -->
-    <!-- 列表 -->
-    <!-- 加载更多组件 -->
-    <scroller-loadmore slot="loadmore" status="{{loadMoreSetting.status}}" loadingText="{{loadMoreSetting.loadingText}}"
-      noMoreText="{{loadMoreSetting.noMoreText}}" moreText="{{loadMoreSetting.moreText}}"
-      color="{{loadMoreSetting.color}}" />
-    <!-- 加载更多组件 -->
-    <!-- 空列表组件 -->
-    <scroller-empty slot="empty" img-class="empty-img" text-class="empty-text" emptyText="{{emptySetting.text}}"
-      emptyImg="{{emptySetting.img}}" />
-    <!-- 空列表组件 -->
-  </scroller>
-  <handtip top="下拉刷新" bottom="上拉加载" opacity="0.7" key="hand1" />
+    <view class="list">
+      <navigator wx:for="{{list}}" wx:key="title" url="{{item.path}}">{{item.title}}</navigator>
+    </view>
+  </view>
 </view>

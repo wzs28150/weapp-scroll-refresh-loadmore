@@ -99,7 +99,12 @@ Component({
       }, 500)()
     },
     onRefresh() {
+      const that = this
+      console.log(that.data.triggered);
       setTimeout(() => {
+        if (that.data.scrollOption.shake) {
+          wx.vibrateShort();
+        }
         this.setData({
           triggered: false
         })
